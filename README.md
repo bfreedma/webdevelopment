@@ -4,7 +4,7 @@ Web Programming with Python and JavaScript
 
 This website is supposed to be a concept of a virtual zoo where visiters can see and learn about unique animals all while staying at home. To get to each of the other pages my website has a bootstrap nav bar pasted to the top of each page. The backgrounds of my pages change on smaller screens.
 
-## index
+## index.html
 This is the main page of my website. This page features a table and gallery of images that use bootstrap's flexbox.
 
 ## giraffe.html
