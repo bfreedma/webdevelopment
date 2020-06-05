@@ -1,0 +1,92 @@
+h1, h3, p {
+  font-family: Helvetica, sans-serif; }
+
+.table {
+  margin: auto;
+  width: 75% !important; }
+
+table th {
+  text-align: center; }
+
+/*sass nesting*/
+#mylist {
+  background-color: chocolate; }
+
+@media (min-width: 500px) {
+  #monk {
+    background-color: #aa571f; } }
+@media (max-width: 500px) {
+  #monk {
+    background-color: #ffd4b5; } }
+
+.flex-container {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-around;
+  padding: 0;
+  margin: 0;
+  list-style: none; }
+
+.flex-item {
+  background: powderblue;
+  padding: 5px;
+  width: 500px;
+  height: 275px;
+  margin-top: 10px;
+  line-height: 150px;
+  color: white;
+  font-weight: bold;
+  font-size: 3em;
+  text-align: center; }
+
+@media all and (max-width: 800px) {
+  .navigation {
+    justify-content: space-around; } }
+@media all and (max-width: 600px) {
+  .navigation {
+    flex-flow: column wrap;
+    padding: 0; }
+
+  .navigation a {
+    text-align: center;
+    padding: 10px;
+    border-top: 1px solid rgba(255, 255, 255, 0.3);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1); }
+
+  .navigation li:last-of-type a {
+    border-bottom: none; } }
+li {
+  font-weight: bold;
+  color: black; }
+  li ul {
+    color: grey; }
+
+@media (min-width: 500px) {
+  #graff {
+    background-color: chocolate; } }
+@media (max-width: 500px) {
+  #graff {
+    background-color: #ffbb8a; } }
+
+@media (min-width: 500px) {
+  #graff1 {
+    background-color: #ffbb8a; } }
+@media (max-width: 500px) {
+  #graff1 {
+    background-color: chocolate; } }
+
+@media (min-width: 500px) {
+  #kang {
+    background-color: #f8d3b8; } }
+@media (max-width: 500px) {
+  #kang {
+    background-color: #944e1c; } }
+
+@media (min-width: 500px) {
+  body {
+    background-color: powderblue; } }
+@media (max-width: 500px) {
+  body {
+    background-color: #1ce7fa; } }
+
+/*# sourceMappingURL=styles.css.map */
