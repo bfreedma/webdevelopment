@@ -1,0 +1,158 @@
+$font-stack: Helvetica, sans-serif;
+
+
+%text {
+  font-family: $font-stack;
+
+}
+
+
+.table {
+  margin: auto;
+  width: 75% !important; 
+}
+
+table th {
+  text-align: center; 
+}
+
+/*sass nesting*/
+
+#mylist {
+  background-color: chocolate;
+}
+
+
+
+#monk{
+  @media (min-width: 500px){
+    background-color: rgb(170, 87, 31);
+
+  }
+
+  @media (max-width: 500px){
+    background-color: rgb(255, 212, 181);
+  }
+  
+}
+.flex-container {
+  
+  display: flex;
+  
+  flex-flow: row wrap;
+  
+  
+  justify-content: space-around;
+  
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.flex-item {
+  background: powderblue;
+  padding: 5px;
+  width: 500px;
+  height: 275px;
+  margin-top: 10px;
+  line-height: 150px;
+  color: white;
+  font-weight: bold;
+  font-size: 3em;
+  text-align: center;
+}
+
+
+  
+  @media all and (max-width: 800px) {
+    .navigation {
+      justify-content: space-around;
+    }
+  }
+  
+  @media all and (max-width: 600px) {
+    .navigation {
+      flex-flow: column wrap;
+      padding: 0;
+    }
+    .navigation a { 
+      text-align: center; 
+      padding: 10px;
+      border-top: 1px solid rgba(255, 255, 255,0.3); 
+      border-bottom: 1px solid rgba(0, 0, 0, 0.1); 
+    }
+    .navigation li:last-of-type a {
+      border-bottom: none;
+    }
+  }
+
+
+ li {
+   font-weight: bold;
+  color: black;
+  ul{
+    color:grey;
+
+  }
+
+
+
+ }
+
+  h1, h3, p {
+    @extend %text;
+  }
+
+  
+
+
+#graff {
+  @media (min-width: 500px){
+    background-color: chocolate;
+
+  }
+
+  @media (max-width: 500px){
+    background-color: rgb(255, 187, 138);
+  }
+
+}
+
+#graff1{
+  @media (min-width: 500px){
+    background-color: rgb(255, 187, 138);
+
+  }
+
+  @media (max-width: 500px){
+    background-color: chocolate
+  }
+
+}
+
+#kang{
+  @media (min-width: 500px){
+    background-color: rgb(248, 211, 184);
+
+  }
+
+  @media (max-width: 500px){
+    background-color: rgb(148, 78, 28)
+  }
+
+}
+
+  @media (min-width: 500px){
+    body {
+      background-color: powderblue;
+    }
+    }
+  
+
+  @media (max-width: 500px){
+    body {
+     
+      background-color: rgb(28, 231, 250);
+      }
+    }
+  
