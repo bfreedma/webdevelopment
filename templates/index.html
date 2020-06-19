@@ -1,0 +1,48 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Index
+{% endblock %}
+
+{% block body %}
+<center>
+<h1>Welcome to the library! Please login or register a new user.<h1>
+<center>
+{% if msg=="user" %}
+<div class="alert alert-danger" id="danger" role="alert">
+  This username does not exist!
+</div>
+{% endif %}
+
+{%if msg=="pass":%}
+<div class="alert alert-danger" id="danger" role="alert">
+  Incorrect password!
+</div>
+{%endif%}
+
+
+<div class="wrapper fadeInDown">
+  <div id="formContent">
+    <!-- Tabs Titles -->
+
+    <!-- Icon -->
+    <div class="fadeIn first">
+      Login here
+    </div>
+
+    <!-- Login Form -->
+    <form method="POST">
+      <input type="text" id="username" class="fadeIn second" name="username" placeholder="username">
+      <input type="password" id="passwrd" class="fadeIn third pass" name="passwrd" placeholder="password">
+      <input type="submit" class="fadeIn fourth" value="Login">
+    </form>
+
+    <!-- Remind Passowrd -->
+    <div id="formFooter">
+      <a class="underlineHover" href="{{ url_for('register')}}">Register New User</a>
+    </div>
+
+  </div>
+</div>
+
+{% endblock %}

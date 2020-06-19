@@ -1,0 +1,41 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Search
+{% endblock %}
+
+{% block body %}
+
+{% if msg=="no_results" %}
+<div class="alert alert-danger" id="danger" role="alert">
+No results found try again.
+</div>
+{% endif %}
+
+
+
+
+<h1>Search for a book here.<h1>
+<div class="button_example"> <a class="btn btn-primary float-right button_example" href="{{ url_for('index')}}" role=button>Logout</a> </div>
+<form class="form-inline mr-auto" method="POST">
+  <input class="form-control" type="text" placeholder="Search" name="text">
+  <button class="btn btn-outline-success btn-rounded btn-sm" type="submit">Search</button>
+  
+</form>
+
+ 
+
+<div class='container bg-light h-25 p-3'>
+        
+        <div class="list-group">
+            {% for books in data %}
+            <a href='/book/{{books.isbn}}' class="list-group-item list-group-item-action">
+                <h3 class='text-primary'>{{books.title}}</h3> 
+                <h4> by {{books.author}} ({{books.year}})</h4>
+                <h6 class='float-right'>isbn: {{books.isbn}}</h6></a>
+            {% endfor %}
+        </div>
+</div>
+
+
+{% endblock %}
