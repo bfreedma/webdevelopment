@@ -1,0 +1,58 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Register
+{% endblock %}
+
+{% block body %}
+<center>
+<h1>Register a New User<h1>
+<center>
+{% if msg=="user" %}
+<div class="alert alert-danger" id="danger" role="alert">
+  This username has already been taken!
+</div>
+{% endif %}
+
+{% if msg=="no_User" %}
+<div class="alert alert-danger" id="danger" role="alert">
+  Please enter in a username!
+</div>
+{% endif %}
+
+{% if msg=="pass" %}
+<div class="alert alert-danger" id="danger" role="alert">
+  Passwords do not match!
+</div>
+{% endif %}
+
+{% if msg=="long" %}
+<div class="alert alert-danger" id="danger" role="alert">
+  Password must be at least 8 characters!
+</div>
+{% endif %}
+
+
+<div class="wrapper fadeInDown">
+  <div id="formContent">
+    <!-- Tabs Titles -->
+
+    <!-- Icon -->
+    <div class="fadeIn first">
+      Create a User
+    </div>
+
+    <!-- Login Form -->
+    <form method="POST">
+      <input type="text" id="username" class="fadeIn second" name="username" placeholder="username">
+      <input type="password" id="password1" class="fadeIn third" name="password1" placeholder="password">
+      <input type="password" id="password2" class="fadeIn third" name="password2" placeholder="password-check">
+      <input type="submit" class="fadeIn fourth" value="Create User">
+    </form>
+
+  </div>
+</div>
+
+
+
+{% endblock %}
