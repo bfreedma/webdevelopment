@@ -1,0 +1,84 @@
+{% extends "network/layout.html" %}
+
+{% block body %}
+<div class="container">
+    <h1>Profile Page</h1>
+
+    <div class="card bg-light mb-3">
+        <div class="card-body">
+            <h5 class="card-title">{{user}}</h5>
+            <p class="card-text">Followers: {{user.followers}} Following: {{user.following.count}}</p>
+            {% if curr_user.is_authenticated %}
+            {% if follow %}
+            {% if unfollow%}
+            <a class="btn btn-warning" href="{% url 'unfollow' user=user %}" role="button">Unfollow {{user}}</a>
+            {% else %}
+            <a class="btn btn-primary" href="{% url 'follow' user=user %}" role="button">Follow {{user}}</a>
+            {% endif %}
+
+            {% endif %}
+
+            {% endif %}
+        </div>
+    </div>
+
+
+    <br>
+    <h3>Posts from {{user}}:</h3>
+    {% for post in page_obj %}
+    <div class="card">
+        <h6 class="card-header">
+            <a class="user" href="profile/{{post.user}}">{{post.user}}</a>
+            {% if post.user == curr_user %}<div class="float-right"> <button data-id={{post.id}}
+                    class="btn btn-primary edit">edit</button></div>
+            {% endif %}
+        </h6>
+        <div class="card-body">
+
+            <p class="card-text">{{post.text}} </p>
+
+        </div>
+        <div class="card-footer text-muted">
+
+            {{post.time}} <div class="float-right">
+                {% if user.is_authenticated %}
+                {% if user in post.like.all%}<button data-id={{post.id}}
+                    class="btn btn-sm btn-warning like">unlike</button>{% else %}
+                <button data-id={{post.id}} class="btn btn-sm btn-primary like">like</button>{% endif %}
+                {% endif %} Likes: <span class="likecount">{{post.like.count}}</span></div>
+        </div>
+    </div>
+    <br>
+    {%empty%}
+    No Posts yet.
+    {% endfor %}
+
+    {% if page_obj.has_other_pages %}
+    <nav aria-label="...">
+        <ul class="pagination">
+            {% if page_obj.has_previous %}
+            <li class="page-item"><a class="page-link" href="?page={{ page_obj.previous_page_number }}">Previous</a>
+            </li>
+            {% else %}
+            <li class="page-item disabled"><span class="page-link">Previous</span></li>
+            {% endif %}
+            {% for i in page_obj.paginator.page_range %}
+            {% if page_obj.number == i %}
+            <li class="active page-item" aria-current="page"><span class="page-link">{{ i }} <span
+                        class="sr-only">(current)</span></span></li>
+            {% else %}
+            <li class="page-item"><a class="page-link" href="?page={{ i }}">{{ i }}</a></li>
+            {% endif %}
+            {% endfor %}
+            {% if page_obj.has_next %}
+            <li class="page-item"><a class="page-link" href="?page={{ page_obj.next_page_number }}">Next</a></li>
+            {% else %}
+            <li class="page-item disabled"><span class="page-link">Next</span></li>
+            {% endif %}
+        </ul>
+    </nav>
+    {% endif %}
+
+
+</div>
+{% endblock %}
