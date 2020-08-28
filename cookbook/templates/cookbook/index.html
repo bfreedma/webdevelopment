@@ -1,0 +1,94 @@
+{% extends "cookbook/layout.html" %}
+
+{% block body %}
+<h1>Home</h1>
+<style>
+    .box {
+        position: relative;
+        display: inline-block;
+        /* Make the width of box same as image */
+    }
+
+    .box .text {
+        position: absolute;
+        z-index: 999;
+        margin: 0 auto;
+        left: 0;
+        right: 0;
+        text-align: center;
+        top: 40%;
+        /* Adjust this value to move the positioned div up and down */
+        background: rgba(0, 0, 0, 0.8);
+        font-family: Arial, sans-serif;
+        color: #fff;
+        width: 37%;
+        /* Set the width of the positioned div */
+    }
+</style>
+
+<div class="box">
+    <img class="img-fluid"
+        src="https://reviewed-com-res.cloudinary.com/image/fetch/s--j_8nio-S--/b_white,c_limit,cs_srgb,f_auto,fl_progressive.strip_profile,g_center,q_auto,w_1200/https://reviewed-production.s3.amazonaws.com/1504039153000/cutttingboard-hero.jpg"
+        alt="Flying Kites">
+    <div class="text">
+        <h1> Welcome to Cookbook!</h1>
+    </div>
+</div>
+<br>
+<br>
+<center>
+    <h4>Fun Fact</h4>
+    {{fun_fact}}
+    <br>
+    <a
+        href="https://www.boredpanda.com/interesting-food-facts-lorcan-fearon/?utm_source=google&utm_medium=organic&utm_campaign=organic">source</a>
+</center>
+
+<br>
+
+<center><a class="btn-lg btn-primary" href="/cookbook/recipe/{{rand_recipe.id}}">Click for a random recipe!</a></center>
+<br>
+<br>
+<h2>Most recent recipes</h2>
+
+<div class="card-deck">
+    <div class="card">
+        <img src="{{recipes.0.image.url}}" class="card-img-top" alt="...">
+        <div class="card-body">
+            <h5 class="card-title"> <a href='recipe/{{recipes.0.id}}'>{{recipes.0.name}}</a></h5>
+            <p class="card-text">{% for user1 in users %}{% if recipes.0 in user1.recipes.all %}Created by: <a
+                    href="/cookbook/profile/{{user1.id}}">{{user1}}</a>{% endif %}{% endfor %}</p>
+        </div>
+        <div class="card-footer">
+            <small class="text-muted">{{recipes.0.time}}</small>
+        </div>
+    </div>
+    <div class="card">
+        <img src="{{recipes.1.image.url}}" class="card-img-top" alt="...">
+        <div class="card-body">
+            <h5 class="card-title"> <a href='recipe/{{recipes.1.id}}'>{{recipes.1.name}}</a></h5>
+            <p class="card-text">{% for user1 in users %}{% if recipes.1 in user1.recipes.all %}Created by: <a
+                    href="/cookbook/profile/{{user1.id}}">{{user1}}</a>{% endif %}{% endfor %}</p>
+        </div>
+        <div class="card-footer">
+            <small class="text-muted">{{recipes.1.time}}</small>
+        </div>
+    </div>
+
+    <div class="card">
+        <img src="{{recipes.2.image.url}}" class="card-img-top" alt="...">
+        <div class="card-body">
+            <h5 class="card-title"> <a href='recipe/{{recipes.2.id}}'>{{recipes.2.name}}</a></h5>
+            <p class="card-text">{% for user1 in users %}{% if recipes.2 in user1.recipes.all %}Created by: <a
+                    href="/cookbook/profile/{{user1.id}}">{{user1}}</a>{% endif %}{% endfor %}</p>
+        </div>
+        <div class="card-footer">
+            <small class="text-muted">{{recipes.2.time}}</small>
+        </div>
+    </div>
+</div>
+<br>
+
+
+
+{% endblock %}

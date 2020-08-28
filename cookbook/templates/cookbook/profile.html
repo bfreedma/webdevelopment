@@ -1,0 +1,54 @@
+{% extends "cookbook/layout.html" %}
+
+{% block body %}
+
+
+<h1>Profile</h1>
+
+<div class="jumbotron">
+    <h1 class="display-4">{{user1}}</h1>
+    <p class="lead">Followers: {{user1.followers}} Following: {{user1.following.count}}</p>
+    <hr class="my-4">
+    <p>Average rating for all recipes: {{avg_rating}}</p>
+    <p>Total recipes: {{recipe_count}}</p>
+    {% if curr_user.is_authenticated %}
+    {% if follow %}
+    {% if unfollow%}
+    <a class="btn btn-warning" href="{% url 'unfollow' user=user1.id %}" role="button">Unfollow {{user1}}</a>
+    {% else %}
+    <a class="btn btn-primary" href="{% url 'follow' user=user1.id %}" role="button">Follow {{user1}}</a>
+    {% endif %}
+
+    {% endif %}
+
+    {% endif %}
+</div>
+
+
+<h2>Recipes from {{user1}}:</h2>
+<div class='container bg-light h-25 p-3'>
+    <div class="list-group">
+        {% for recipe in user1.recipes.all %}
+        <a href="{% url 'recipe' recipe=recipe.id %}" class="list-group-item list-group-item-action">
+
+            <div style="display:inline-block">
+                <h3 class='text-primary d-inline-flex p-2'>{{recipe.name}}</h3>
+                <h5 class="d-inline-flex p-2">rating: {{recipe.avg_ratings.rating__avg}}</h5>
+                <br>
+                <div class="d-inline-flex p-2">
+                    <h6>{{recipe.description}}</h6>
+                </div>
+            </div>
+            <div style="display:inline-block" class="float-right">
+                <img src="{{ recipe.image.url }}" class="rounded img-thumbnail" width="250" alt="Responsive image">
+            </div>
+
+        </a>
+        <br>
+
+        {% endfor %}
+    </div>
+</div>
+
+
+{% endblock %}
