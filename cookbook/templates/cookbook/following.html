@@ -1,0 +1,34 @@
+{% extends "cookbook/layout.html" %}
+
+{% block body %}
+
+<h1>Recipes from those you follow</h1>
+
+<h4>Currently following {{following.count}} users.</h4>
+<div class='container bg-light h-25 p-3'>
+    <div class="list-group">
+        {% for recipe in follow_list %}
+        <a href="{% url 'recipe' recipe=recipe.id %}" class="list-group-item list-group-item-action">
+
+            <div style="display:inline-block">
+                <h3 class='text-primary d-inline-flex p-2'>{{recipe.name}}</h3>
+                <h5 class="d-inline-flex p-2">rating: {{recipe.avg_ratings.rating__avg}}</h5>
+                <br>
+                <div class="d-inline-flex p-2">
+                    <h6>{{recipe.description}}</h6>
+                </div>
+            </div>
+            <div style="display:inline-block" class="float-right">
+                <img src="{{ recipe.image.url }}" class="rounded img-thumbnail" width="250" alt="Responsive image">
+            </div>
+
+        </a>
+        {% for user1 in users %}{% if recipe in user1.recipes.all %} <a href="profile/{{user1.id}}">
+            <h5 class="list-group-item list-group-item-action">Made by: {{user1}}</h5>
+        </a>{% endif %}{% endfor %}
+        {% endfor %}
+    </div>
+</div>
+
+
+{% endblock %}

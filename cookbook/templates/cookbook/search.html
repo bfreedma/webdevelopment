@@ -1,0 +1,54 @@
+{% extends "cookbook/layout.html" %}
+
+{% block body %}
+<h1>Search</h1>
+
+
+
+<form method="post">
+    {% csrf_token %}
+    <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="option" id="inlineRadio1" value="name" checked>
+        <label class="form-check-label" for="inlineRadio1">Search by recipe name</label>
+    </div>
+    <div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="option" id="inlineRadio2" value="ingredient">
+        <label class="form-check-label" for="inlineRadio2">Search by ingredient</label>
+    </div>
+
+    <input class="form-control" name="text" id="text"></input>
+    <br>
+    <button type="submit" class="btn btn-primary mb-2">Search</button>
+</form>
+
+
+
+<h4>{{mess}} {{text}}</h4>
+<div class='container bg-light h-25 p-3'>
+    <div class="list-group">
+        {% for recipe in search_list %}
+        <a href="{% url 'recipe' recipe=recipe.id %}" class="list-group-item list-group-item-action">
+
+            <div style="display:inline-block">
+                <h3 class='text-primary d-inline-flex p-2'>{{recipe.name}}</h3>
+                <h5 class="d-inline-flex p-2">rating: {{recipe.avg_ratings.rating__avg}}</h5>
+                <br>
+                <div class="d-inline-flex p-2">
+                    <h6>{{recipe.description}}</h6>
+                </div>
+            </div>
+            <div style="display:inline-block" class="float-right">
+                <img src="{{ recipe.image.url }}" class="rounded img-thumbnail" width="250" alt="Responsive image">
+            </div>
+
+        </a>
+        {% for user1 in users %}{% if recipe in user1.recipes.all %} <a href="profile/{{user1.id}}">
+            <h5 class="list-group-item list-group-item-action">Made by: {{user1}}</h5>
+        </a>{% endif %}{% endfor %}
+
+        {% endfor %}
+    </div>
+</div>
+
+
+{% endblock %}
